@@ -1,0 +1,30 @@
+{
+  "pages":[
+    "pages/index/index",
+    "pages/my/index",
+    "pages/detail/index",
+    "pages/new/index",
+    "pages/diary/index",
+    "pages/logs/logs"
+  ],
+  "window":{
+    "backgroundTextStyle":"bold",
+    "navigationBarBackgroundColor": "#ff71a8",
+    "navigationBarTitleText": "pinkDiary",
+    "navigationBarTextStyle":"#fff"
+  },
+  "tabBar": {
+    "list": [{
+      "pagePath": "pages/index/index",
+      "text": "社区",
+      "iconPath": "images/lifeNormal.png",
+      "selectedIconPath": "images/lifeSelected.png"
+    },
+    {
+      "pagePath": "pages/my/index",
+      "text": "我的",
+      "iconPath": "images/myNormal.png",
+      "selectedIconPath": "images/mySelected.png"
+    }]
+  }
+}
