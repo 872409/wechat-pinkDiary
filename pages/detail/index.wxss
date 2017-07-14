@@ -1,0 +1,330 @@
+.content {
+  width: 100%;
+  margin-bottom: 60px;
+}
+.c_top {
+  width: 100%;
+  height: 80px;
+  padding: 10px;
+  box-sizing: border-box;
+  position: relative;
+}
+.c_top:after{
+  content:'';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 3px;
+  background-size: 6px 6px;
+  background-repeat: repeat-x;
+  background-image: linear-gradient(135deg, transparent 45%, pink 55%,transparent 45%),
+  linear-gradient(45deg, transparent 45%, pink 55%,transparent 45%);
+}
+.c_top .title {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+.info .type {
+  background-color: pink;
+  border-radius: 5px;
+  font-size: 12px;
+  height: 20px;
+  line-height: 20px;
+  color: #fff;
+}
+.info .desc {
+  text-align: right;
+}
+.info .desc .number {
+  font-size: 12px;
+  color: #333;
+}
+.info .desc .watch {
+  font-size: 12px;
+  color: #333;
+  position: relative;
+  padding-right: 10px;
+  margin-right: 10px;
+}
+.info .desc .watch:after{
+  content:'';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 1px;
+  background-color: pink;
+}
+.c_main{
+  padding: 10px;
+  box-sizing: border-box;
+  position: relative;
+}
+.c_main :after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background-color: #efefef;
+}
+.c_main .m_top .left {
+  width: 50px;
+  height: 50px;
+  margin-right: 10px;
+}
+.c_main .m_top .left image{
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+.c_main .m_top .middle .username{
+  font-size: 14px;
+  color: #ff71a8;
+}
+.c_main .m_top .middle .time {
+  font-size: 12px;
+  color: #999;
+}
+.c_main .m_top .right .position {
+  font-size: 12px;
+  color: #999;
+}
+.c_main .m_content {
+  margin-top: 10px;
+}
+.c_main .m_content .commentBox {
+  margin-bottom: 10px;
+}
+.c_main .m_content .comment {
+  padding-left: 10px;
+  padding-right: 10px;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+.c_main .m_content image {
+  width: 260px;
+  margin: 0 auto;
+  display: block;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+.c_main .option {
+  width: 100%;
+  text-align: right;
+  margin-top: 10px;
+}
+.c_main .option .item {
+  margin-right: 20px;
+}
+.c_main .option .likeBox {
+  width: 20px;
+  height: 20px;
+  background: url(../../images/upvote.png) no-repeat;
+  background-size: cover;
+  display: inline-block;
+}
+.c_main .option .likeNum {
+  font-size: 14px;
+  color: #999;
+  margin-left: 4px;
+}
+.c_main .option .replyBox {
+  width: 20px;
+  height: 20px;
+  background: url(../../images/reply.png) no-repeat;
+  background-size: cover;
+  display: inline-block;
+}
+.c_main .option .reply{
+  font-size: 14px;
+  color: #999;
+  margin-left: 4px;
+}
+.bottomBar {
+  height:60px;
+  z-index: 999;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  border-top: 1px solid #efefef;
+}
+.commentBox {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #fff;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.1);
+  z-index: 999;
+}
+.bottomBar .left {
+  width: 25px;
+  height: 25px;
+  background: url(../../images/emoji.png) no-repeat;
+  background-size: cover;
+  margin-left: 10px;
+}
+.bottomBar .more {
+  width: 20px;
+  height: 20px;
+  margin-left: 10px;
+  background: url(../../images/add.png);
+  background-size: cover;
+}
+.bottomBar .inputBox{
+  border: 1px solid #efefef;
+  height: 40px;
+  border-radius: 15px;
+  margin-left: 10px;
+  margin-right: 10px;
+  padding: 10px;
+  box-sizing: border-box;
+}
+.bottomBar .right {
+  width: 30px;
+  height: 30px;
+  background: url(../../images/send.png) no-repeat;
+  background-size: cover;
+  margin-right: 20px;
+}
+.emoji {
+  background-color: #fff;
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  padding-top: 2px;
+  box-sizing: border-box;
+  font-size: 20px;
+}
+.emoji-box {
+  background: #efefef;
+  position: relative;
+  height: 200px;
+  padding: 5px 0;
+  box-sizing: border-box;
+  margin-bottom: -200px;
+}
+.emoji-cell {
+  width: 10%;
+  height: 33px;
+  display: inline-block;
+}
+.emoji-cell image {
+  width: 30px;
+  height: 30px;
+  padding: 5px;
+  border-radius: 3px;
+}
+.photo-box scroll-view {
+  width: 100%;
+  white-space: nowrap;
+}
+.emoji-move-in {
+  -webkit-animation: emoji-move-in 0.3s forwards;
+  animation: emoji-move-in 0.3s forwards;
+}
+
+.emoji-move-out {
+  -webkit-animation: emoji-move-out 0.3s forwards;
+  animation: emoji-move-out 0.3s forwards;
+}
+
+.no-emoji-move {
+  -webkit-animation: none;
+  animation: none;
+}
+
+@-webkit-keyframes emoji-move-in {
+  0% {
+    margin-bottom: -200px;
+  }
+
+  100% {
+    margin-bottom: 0;
+  }
+}
+
+@keyframes emoji-move-in {
+  0% {
+    margin-bottom: -200px;
+  }
+
+  100% {
+    margin-bottom: 0;
+  }
+}
+
+@-webkit-keyframes emoji-move-out {
+  0% {
+    margin-bottom: 0;
+  }
+
+  100% {
+    margin-bottom: -200px;
+  }
+}
+
+@keyframes emoji-move-out {
+  0% {
+    margin-bottom: 0;
+  }
+
+  100% {
+    margin-bottom: -200px;
+  }
+}
+.photo-box scroll-view .photo-cell {
+  display: inline-block;
+  width: 100px;
+  height: 100px;
+  padding: 10px;
+  box-sizing: border-box;
+  position: relative;
+}
+.photo-box {
+  background: #efefef;
+  position: relative;
+  height: 200px;
+  padding: 5px 0;
+  box-sizing: border-box;
+  margin-bottom: -200px;
+}
+.photo-box .addButton {
+  width: 100px;
+  height: 100px;
+  background: url(../../images/addPhoto.png) no-repeat center center;
+  background-size: 50px 50px;
+  margin: 0 auto;
+}
+.photo-box .desc {
+  display: block;
+  width: 100%;
+  text-align: center;
+  font-size: 12px;
+}
+.photo-box .photo-cell image {
+  width: 80px;
+  height: 80px;
+}
+.photo-box .photo-cell .delete {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 20px;
+  height: 20px;
+  background: url(../../images/delete.png) no-repeat;
+  background-size: cover;
+  z-index: 1000;
+}
+.nodata {
+  width: 100%;
+  height: 40px;
+  line-height: 40px;
+  margin-bottom:60px;
+  text-align: center;
+  font-size: 14px;
+  background-color: #efefef;
+}

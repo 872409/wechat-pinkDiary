@@ -1,0 +1,87 @@
+<view class="container">
+  <view>
+    <swiper class="swiper_box" indicator-color="{{indicatorcolor}}" indicator-active-color="{{indicatoractivecolor}}" vertical="{{vertical}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" indicator-dots="indicatorDots">
+      <block wx:for="{{images}}" wx:key="item">
+        <swiper-item>
+          <image src="{{item}}" class="slide-image"></image>
+        </swiper-item>
+      </block>
+    </swiper>
+  </view>
+  <view>
+    <scroll-view scroll-x="{{scrollX}}">
+      <block wx:for="{{topTopic}}" wx:key="item">
+        <view class="item">
+          <image src="{{item.src}}"></image>
+          <text class="topicName">{{item.text}}</text>
+        </view>
+      </block>
+    </scroll-view>
+  </view>
+  <view class="hot">
+    <block wx:for="{{hotInfo}}" wx:key="item">
+      <view class="hcontent" id="{{item.id}}" bindtap="toDetail">
+        <view class="hot_top flex">
+          <view class="ht_left">
+            <image src="{{item.avatar}}"></image>
+          </view>
+          <view class="ht_main flex_auto">
+            <text class="username">{{item.username}}</text>
+            <text class="time">{{item.time}}</text>
+          </view>
+        </view>
+        <view class="hot_content">
+          <view class="type">{{item.type}}</view>
+          <view class="text">{{item.content}}</view>
+          <view class="image" wx:for="{{item.images}}" wx:key="item">
+            <image src="{{item}}"></image>
+          </view>
+          <view wx:if="{{item.video}}" class="video">
+            <video src="{{item.video}}"></video>
+          </view>
+        </view>
+        <view class="hot_bottom flex">
+          <view class="hb_left flex_auto">{{item.watchNum}}浏览</view>
+          <view class="hb_right">
+            <view class="shareBox"></view>
+            <text class="share">{{item.share}}</text>
+            <view class="likeBox"></view>
+            <text class="like">{{item.like}}</text>
+            <view class="replyBox"></view>
+            <text class="reply">{{item.reply}}</text>
+          </view>
+        </view>
+      </view>
+    </block>
+  </view>
+  <view class="header">
+    <view class="icon"></view>
+    <view class="title">推荐话题</view>
+  </view>
+  <view class="content" wx:for="{{topicList}}" wx:key="item" id="{{item.id}}" bindtap="toDetail">
+    <view class="c_left">
+      <view class="avatar">
+        <image src="{{item.avatar}}"></image>
+        <view class="crown"></view>
+      </view>
+    </view>
+    <view class="c_right">
+      <view class="topic">
+        <text class="text">{{item.topic}}</text>
+      </view>
+      <view class="bottom">
+        <view class="author">
+          <text class="authorName">{{item.author}}</text>
+        </view>
+        <view class="time">
+          <text class="dayTime">{{item.time}}</text>
+        </view>
+        <view class="commentNum">
+          <text class="number">{{item.commentNum}}评论</text>
+        </view>
+      </view>
+    </view>
+  </view>
+  <button class="themeBtn" bindtap="towriteDiary"></button>
+  <view class="bottomDesc">我是有底线的哦~</view>
+</view>

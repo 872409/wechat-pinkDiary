@@ -1,0 +1,106 @@
+.header {
+  width: 100%;
+  height: 40px;
+  background-color: #fff;
+  margin-bottom: 10px;
+  justify-content: center;
+  align-items: center;
+}
+.header .iconBox {
+  width: 30px;
+  height: 30px;
+  background: url(../../images/sun.png) no-repeat;
+  background-size: cover;
+}
+.header .refresh {
+  margin-right: 10px;
+  width: 25px;
+  height: 25px;
+  background: url(../../images/refresh.png) no-repeat;
+  background-size: cover;
+}
+.header .text {
+  font-size: 14px;
+  line-height: 40px;
+  color: #999;
+}
+.diaryBox {
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  background-color: #fefefe;
+  border-top: 1px dashed pink;
+  border-bottom: 1px dashed pink;
+  position: relative;
+}
+.diaryBox .inform {
+  width: 100%;
+  min-height: 700px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  background-color: #faf9f9;
+}
+.diaryBox .inform image {
+  display: block;
+}
+.diaryBox .inform  .info {
+  font-size: 14px;
+  text-align: center;
+  width: 100%;
+  display: block;
+}
+.diaryBox .title {
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+.diaryBox .content {
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+.diaryBox .imgBox {
+  width: 100%;
+}
+.imgBox .image {
+  width:33.3333%;
+  width: 100px;
+  padding: 10px;
+  box-sizing: border-box;
+  display: inline-block;
+}
+.imgBox .image image {
+  width: 80px;
+  height: 80px;
+  border-radius: 5px;
+}
+.diaryBox .time {
+  font-size: 12px;
+  color: #999;
+  margin-bottom: 10px;
+}
+.diaryBox .location {
+  padding-left: 20px;
+  box-sizing: border-box;
+  color: #74e4f8;
+  font-size: 14px;
+  background: url(../../images/blue.png) no-repeat;
+  background-size: 20px 20px;
+}
+.diaryBox .operate {
+  width: 100%;
+  margin-top: 20px;
+}
+.operate .delete {
+  width: 25px;
+  height: 25px;
+  background: url(../../images/deleteBtn.png) no-repeat;
+  background-size: cover;
+  margin-right: 20px;
+}
+.operate .modify{
+  width: 25px;
+  height: 25px;
+  background: url(../../images/modify.png) no-repeat;
+  background-size: cover;
+  margin-right: 20px;
+}

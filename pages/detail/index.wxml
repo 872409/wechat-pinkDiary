@@ -1,0 +1,138 @@
+<view class="container">
+<scroll-view scroll-y="true" style="height:{{scrollHeight}}px" bindscroll="scroll" bindscrolltolower="refresh">
+<!-- 话题详情 -->
+  <block wx:for="{{topicInfo}}" wx:key="item">
+    <view class="content" bindtap="bindClick">
+      <view class="c_top">
+        <view class="title">
+          <text>{{item.topic}}</text>
+        </view>
+        <view class="info flex">
+          <text class="type">{{item.type}}</text>
+          <view class="desc flex_auto">
+              <text class="watch">{{item.watchNum}}浏览</text>
+              <text class="number">{{item.commentNum}}评论</text>
+          </view>
+
+        </view>
+      </view>
+      <!-- 评论列表 -->
+      <view class="commentList">
+          <view class="c_main" wx:for="{{item.commentList}}" wx:key="item">
+            <view class="m_top flex">
+              <view class="left">
+                <image src="{{item.avatar}}"></image>
+              </view>
+              <view class="middle flex_auto">
+                <view>
+                  <text class="username">{{item.author}}</text>
+                </view>
+                <view>
+                  <text class="time">{{item.time}}</text>
+                </view>
+              </view>
+              <view class="right">
+                <text class="position">{{item.position}}</text>
+              </view>
+            </view>
+            <view class="m_content">
+              <text class="comment">{{item.content}}</text>
+              <view wx:for="{{item.images}}"  wx:key="item">
+                <image src="{{item}}"></image>
+              </view>
+              <view class="option flex">
+                <view class="flex_auto"></view>
+                <view class="item">
+                  <view class="likeBox">
+                  </view>
+                  <text class="likeNum" wx:if="{{item.like >0}}">{{item.like}}</text>
+                </view>
+                <view class="item">
+                  <view class="replyBox">
+                  </view>
+                  <text class="reply">回复</text>
+                </view>
+              </view>
+            </view>
+          </view>
+          <!-- 新增评论 -->
+          <view class="c_main" wx:for="{{commentList}}" wx:key="item">
+            <view class="m_top flex">
+              <view class="left">
+                <image src="{{item.avatar}}"></image>
+              </view>
+              <view class="middle flex_auto">
+                <view>
+                  <text class="username">{{item.username}}</text>
+                </view>
+                <view>
+                  <text class="time">{{item.time}}</text>
+                </view>
+              </view>
+              <view class="right">
+                <text class="position">{{item.position}}</text>
+              </view>
+            </view>
+            <view class="m_content">
+              <text class="comment">{{item.content}}</text>
+              <view wx:for="{{item.images}}"  wx:key="item">
+                <image src="{{item}}"></image>
+              </view>
+              <view class="option flex">
+                <view class="flex_auto"></view>
+                <view class="item">
+                  <view class="likeBox">
+                  </view>
+                  <text class="likeNum" wx:if="{{item.like >0}}">{{item.like}}</text>
+                </view>
+                <view class="item">
+                  <view class="replyBox">
+                  </view>
+                  <text class="reply">回复</text>
+                </view>
+              </view>
+            </view>
+          </view>
+      </view>
+
+    </view>
+  </block>
+  <view wx:if="{{nodata}}" class="nodata">亲,到底了哦~</view>
+</scroll-view>
+
+  <!-- 底部评论盒子 -->
+  <view class="commentBox">
+    <view class="bottomBar flex">
+      <view class="left" bindtap="emojiShowHide"></view>
+      <view class="more" bindtap="photoShoWHide"></view>
+      <view class="inputBox flex_auto">
+        <input type="text" bindinput="commentInput" value="{{comment}}" placeholder="请输入评论内容"/>
+      </view>
+      <view class="right" bindtap="submitComment"></view>
+    </view>
+  <!-- emoji表情盒子 -->
+  <view class="emoji-box {{isShow ? 'emoji-move-in' : 'emoji-move-out'}} {{isLoad ? 'no-emoji-move' : ''}}" >
+    <scroll-view scroll-y="true" bindscroll="emojiScroll" style="height:200px">
+      <block wx:for="{{emojis}}" wx:for-item="e" wx:key="">
+        <view class="emoji-cell">
+          <image class="touch-active" bindtap="emojiChoose" src="http://soupu.oss-cn-shanghai.aliyuncs.com/emoji/{{e.emoji}}.png" data-emoji="{{e.char}}" data-oxf="{{e.emoji}}"></image>
+        </view>
+      </block>
+    </scroll-view>
+  </view>
+
+  <!-- 添加图片盒子 -->
+  <view class="photo-box {{photoShow?  'emoji-move-in' : 'emoji-move-out'}}">
+    <scroll-view scroll-x="true" bindscroll="photoScroll" style="height:200px">
+      <block wx:for="{{photos}}"  wx:key="item">
+        <view class="photo-cell" >
+          <view class="delete" id="{{index}}" bindtap="deletePhoto"></view>
+          <image class="touch-active" bindtap="photoChoose" src="{{item}}"></image>
+        </view>
+      </block>
+      <view class="addButton" bindtap="addPhoto"></view>
+      <text class="desc">添加图片</text>
+    </scroll-view>
+  </view>
+ </view>
+</view>

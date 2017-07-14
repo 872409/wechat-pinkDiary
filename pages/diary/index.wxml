@@ -1,0 +1,29 @@
+<view class="container">
+  <view class="header flex">
+    <view class="iconBox"></view>
+    <view class="text flex_auto" >{{diaryCount}}篇记录</view>
+    <view class="refresh"></view>
+  </view>
+  <view class="diaryBox" >
+    <view wx:if="{{isShow}}">
+      <view class="title">{{diaryTitle}}</view>
+      <view class="time">{{time}}</view>
+      <view class="content">{{content}}</view>
+      <view class="imgBox">
+        <view class="image" wx:for="{{images}}" wx:key="item">
+          <image src="{{item}}"></image>
+        </view>
+      </view>
+      <view class="location">{{location}}</view>
+    </view>
+    <view wx:if="{{diaryCount <= 0}}"class="inform">      
+      <image src="../../images/diary_bg.png"></image>
+      <text class="info">还没有记录哦~</text>
+    </view>
+   <view wx:if="{{diaryCount > 0}}" class="operate flex">
+      <view class="blank flex_auto"></view>
+      <view class="delete" title="删除" bindtap="deleteDiary"></view>
+      <view class="modify" title="编辑" bindtap="modify"></view>
+  </view>
+  </view>
+</view>

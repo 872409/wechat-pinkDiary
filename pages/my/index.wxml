@@ -1,0 +1,44 @@
+<view class="container">
+  <view class="top flex">
+    <view>
+      <image src="{{userInfo.avatarUrl}}"></image>
+    </view>
+    <view class="flex_auto">
+      <text class="username">{{userInfo.nickName}}</text>
+      <text class="diaryNum">{{diaryCount}}篇日记</text>
+    </view>
+    <view class="new" bindtap="showModal"></view>
+  </view>
+  <view class="navbar flex">
+    <view class="item active" id="1" bindtap="toDiary">
+      <image src="../../images/diary.png"></image>
+      <view class="text">日记</view>
+    </view>
+    <view class="item" id="2">
+      <image src="../../images/store.png"></image>
+      <view class="text">收藏</view>
+    </view>
+    <view class="item" id="3">
+      <image src="../../images/like.png"></image>
+      <view class="text">喜欢</view>
+    </view>
+    <view class="item" id="4">
+      <image src="../../images/more.png"></image>
+      <view class="text">更多</view>
+    </view>
+  </view>
+  <view class="modal" style="{{modalShowStyle}}">
+      <view class="dialog">
+          <view class="modal-item" style="display:flex;justify-content:center;align-items:center;">
+          请输入日记标题
+          </view>
+          <view class="modal-item" style="margin:0 auto;width:90%;">
+              <input type="text" bindinput="titleInput" style="background-color:white;border-radius:2px; height:30px;" value="{{title}}" placeholder="请输入日记标题"></input>
+          </view>
+          <view class="modal-button" style="width:100%">
+              <view style="color:green;border-right:1px solid #E5E7ED;" bindtap="touchAddNew">确定</view>
+              <view bindtap="touchCancel">取消</view>
+          </view>
+      </view>
+  </view>
+</view>
