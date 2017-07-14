@@ -19,11 +19,11 @@
 **效果预览** <br>
   嘻嘻，先来一波gif图^_^  <br>
   
-  ![整体预览](https://github.com/zsqio/wechat-pinkDiary/blob/master/images/yl.gif) <br>
+  ![整体预览](https://github.com/zsqio/wechat-pinkDiary/blob/master/images/yulan.gif) <br>
   
-  ![写日记](https://github.com/zsqio/wechat-pinkDiary/blob/master/images/wd.gif) <br>
+  ![写日记](https://github.com/zsqio/wechat-pinkDiary/blob/master/images/write.gif) <br>
   
-  ![话题详情](https://github.com/zsqio/wechat-pinkDiary/blob/master/images/pl.gif)<br>
+  ![话题详情](https://github.com/zsqio/wechat-pinkDiary/blob/master/images/comment.gif)<br>
   
 **功能实现** <br>
   * 轮播图
@@ -229,7 +229,7 @@ HTML结构
   ```
   * 上传图片 <br>
   通过wx.chooseImage(OBJECT)来从本地相册选择图片或使用相机拍照，具体参数如图：<br>
-  ![]()
+  ![](https://github.com/zsqio/wechat-pinkDiary/blob/master/images/param.PNG) <br>
   主要代码：
   ```
    wx.chooseImage({
