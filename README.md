@@ -42,7 +42,7 @@
 **具体实现** <br>
 
 首先,在社区这一块，我用到大量数据都是用mock来模拟数据，详情可见[Easy Mock](http://www.easy-mock.com) Easy Mock是一个可视化工具，能快速生成模拟数据的服务，它能为我们提供一个数据接口url，然后使用wx.request({ url: url, .....})来发送数据请求，不得不说mock是前端人员的有力工具。<br>
-> 轮播图  <br>
+* 轮播图  <br>
 轮播图是微信小程序自带的轮播图(swiper)组件 <br>
 HTML结构
 ```
@@ -76,7 +76,7 @@ HTML结构
     }
   })
   ```
-  > tabbar切换良好交互 <br>
+  * tabbar切换良好交互 <br>
   这个功能实现起来比较简单，主要是将app.json文件中的tabBar里设置样式、页面路径、图片路径，用列表list来渲染,详细请参考以下代码
   ```
      "tabBar": {
@@ -97,7 +97,7 @@ HTML结构
       }]
    }
    ```
-   > 写日记 <br>
+   * 写日记 <br>
    因为编辑日记和展示日记在两个不同的页面，所以两个页面之间需要传递日记的内容，这里我主要是借助wx.setLocalStorage(key:key,value:value)将需要传递的数据存放到本地缓存中，虽然我们不建议将关键信息全部存在localStorage，以防用户换设备的情况。 但是在我们没有更好的数据共享的方式前可以一试。最后我们在日记列表页面通过wx.getStorage(key)得到我们之前存储的东西，然后再页面上显示出来。在日记列表页面可以对你的日记进行删除和修改操作，删除就很简单了，直接利用wx.clearStorage()将你存储在localSroage里的数据全部清空就可以了。这里可以借助setTimeout来实现一个假的效果，修改的话，就是通过wx.navigateTo()里的url将日记的text作为参数传递给编辑页面，详情见代码：<br>
   日记列表页面代码： <br> 
    ```
@@ -149,6 +149,102 @@ HTML结构
         }, 100)
      }
 ```
-< 地理定位 <br>
+* 地理定位 <br>
+ 我在定位功能的实现中使用了腾讯地图的定位API,具体使用可参考网址详细解析http://lbs.qq.com/qqmap_wx_jssdk/index.html <br/>
+ 但是有3步是必不可少的：
+ 1 申请开发者密钥（key）：[申请密钥] http://lbs.qq.com/key.html
+ 2 下载微信小程序JavaScriptSDK，微信小程序JavaScriptSDK v1.0
+ 3 安全域名设置，需要在微信公众平台添加域名地址https://apis.map.qq.com <br/>
+ 完成以上3步，你就可以友好地使用Api了，首先使用wx.getLocation()获取当前用户位置的经纬度，然后通过逆地址解析获取当前的具体位置，这里就是使用腾讯位置服务平台提供的reverseGeocoder接口，在逆地址解析结果中获取省份和城市信息。参考代码：
+ ```
+  getLocation: function() {
+    let that=this;
+    wx.getLocation({      //首先获得经纬度
+      type: 'wgs84',
+      success:(res)=> {
+        var latitude = res.latitude
+        var longitude = res.longitude
+        demo.reverseGeocoder({      //然后借助腾讯位置服务提供个逆地址解析api将经纬度转换成具体的地址
+          location:{
+            latitude,
+            longitude
+          },
+          success: function(res) {
+            console.log(res.result)
+              var location=res.result.address_component.province+res.result.address_component.city
+              that.setData({
+                location,
+                locationStyle:'background-image:url(./../../images/blue.png);color:#1296db;'
+              });
+              wx.setStorage({
+                key:"location",
+                data:location
+              })
+
+          },
+          fail: function(res) {
+              console.log(res);
+          },
+          complete: function(res) {
+              console.log(res);
+          }
+        });
+      }
+    })
+  }
+  ```
+  * 下拉刷新评论 <br>
+  这里主要是借助了微信小程序的视图容器scroll-view，可滚动区域，设置属性scroll-y="true",表示可沿着y轴滚动，需要注意使用竖向滚动时，需要给<scroll-view/>一个固定高度，我这里是通过wx.getSystemInfo()得到windowHeight,然后将固定高度设置为和windowHeight一样。当滚动到评论底部时，会触发会触发 scrolltolower 事件，在事件对应的处理方法里我们将预先设置好的评论信息加载到页面上。这样就形成一个下拉加载的效果。参考代码:<br>
+  ```
+  //哈哈，方法命名有点粗糙~
+  refresh:function(){
+    console.log('bottom')
+    let that = this,conArr = []
+    if (that.data.refreshTime < 3) {     //refreshTime是在data里定义的一个常量，用来控制加载次数，这里最多3次
+      for(let i=0;i<3;i++){
+        conArr.push({
+          'avatar':'../../images/avatar.jpg',
+          'username':'西瓜君',
+          'content':'简直66666',
+          'time':util.formatTime(new Date())   //获取当前时间，utils文件夹下的util.js里定义了formateTime()方法，详情见源码~
+        })
+      }
+      wx.showToast({               //显示加载提示框
+        title: '加载中',
+        icon: 'loading',
+        duration: 3000
+      })
+      setTimeout(function () {
+            that.setData({
+              commentList: that.data.commentList.concat(conArr)
+            })
+          },3000)
+    } else {
+      that.setData({
+        nodata:true
+      })
+    }
+    ++that.data.refreshTime;
+  }
+  ```
+  * 上传图片 <br>
+  通过wx.chooseImage(OBJECT)来从本地相册选择图片或使用相机拍照，具体参数如图：<br>
+  ![]()
+  主要代码：
+  ```
+   wx.chooseImage({
+    count: 1, // 默认9
+    sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
+    sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+    success: function (res) {
+          // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
+        var tempFilePaths = res.tempFilePaths; 
+        this.setData({
+        photos: tempFilePaths
+        })
+     }
+ })
+ .....
+```
 
    
