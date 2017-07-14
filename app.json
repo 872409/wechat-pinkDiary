@@ -14,6 +14,9 @@
     "navigationBarTextStyle":"#fff"
   },
   "tabBar": {
+    "color":"#999",
+    "selectedColor":"#ff71a8",
+    "borderStyle":"white",
     "list": [{
       "pagePath": "pages/index/index",
       "text": "社区",
