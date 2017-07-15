@@ -32,7 +32,7 @@ Page({
       },
       success: function(res) {
          var data = res.data.hotInfo;
-         console.log(data)
+        //  console.log(data)
          that.setData({
            hotInfo: data
     })
@@ -45,7 +45,7 @@ Page({
       },
       success: function(res) {
          var data = res.data.topTopic;
-         console.log(data)
+        //  console.log(data)
          that.setData({
            topTopic: data
     })
@@ -58,7 +58,7 @@ Page({
       },
       success: function(res) {
          var data = res.data.topicList;
-         console.log(data)
+        //  console.log(data)
          that.setData({
            topicList: data
     })
@@ -70,12 +70,6 @@ toDetail: function(e) {
   wx.navigateTo({
     url: '../detail/index?id='+id
   })
-},
-scrollLeft: function(e) {
-  console.log('aaa')
-  // this.setData({
-  //   scrollLeft: this.data.scrollLeft + 20
-  // })
 },
 toDetail: function(e) {
   var id = e.currentTarget.id

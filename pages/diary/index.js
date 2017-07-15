@@ -16,14 +16,12 @@ Page({
     })
   },
   onShow:function() {
-    // console.log('bbb')
     let that = this;
     let images = wx.getStorageSync("images")
     let content = wx.getStorageSync("diaryContent")
     let diaryTitle = wx.getStorageSync("title")
     let time = wx.getStorageSync("date")
     let location = wx.getStorageSync("location")
-    // console.log(that.data)
     that.setData({
       images:images
     })

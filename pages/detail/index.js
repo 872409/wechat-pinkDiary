@@ -59,7 +59,6 @@ Page({
     wx.setNavigationBarTitle({
       title:'话题详情'
     });
-    // console.log('onLoad')
     wx.request({
       url:'http://www.easy-mock.com/mock/596487a2b6cab76bb738bcc6/topicDetail/'+ id,
       header:{
@@ -67,11 +66,9 @@ Page({
       },
       success: function(res) {
          var data = res.data.topicInfo;
-        //  console.log(data.type)
          that.setData({
            topicInfo: data
     })
-    // console.log(that.topicInfo)
   }
 })
 var em = {}, that = this, emChar = that.data.emojiChar.split("-");
@@ -141,7 +138,7 @@ photoShoWHide: function() {
   })
 },
 emojiChoose: function(e) {
-  console.log(e.currentTarget.dataset.emoji)
+  // console.log(e.currentTarget.dataset.emoji)
   this.setData({
       comment: this.data.comment + e.currentTarget.dataset.emoji
     })
@@ -164,7 +161,7 @@ addPhoto:function() {
 },
 deletePhoto: function(e){
   let that = this
-  console.log(e.currentTarget.id)
+  // console.log(e.currentTarget.id)
   let id = e.currentTarget.id
   that.data.photos.splice(id,1)
   that.setData({

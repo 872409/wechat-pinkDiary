@@ -6,7 +6,6 @@ var demo=new QQMapWX({
 })
 
 let currentdate=util.getNowFormatDate();
-
 var app=getApp()
 Page({
   data:{
@@ -307,7 +306,7 @@ Page({
   },
   input:function(e){
     let that = this
-    console.log(e.detail.value)
+    // console.log(e.detail.value)
     let content = e.detail.value
     that.setData({
       content:e.detail.value
@@ -315,7 +314,7 @@ Page({
   },
   save: function(event){
     let that = this;
-    console.log(event.detail.value);
+    // console.log(event.detail.value);
     var content = event.detail.value;
     console.log(content)
     if(content!== '') {
