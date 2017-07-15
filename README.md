@@ -17,11 +17,11 @@
   
   
 **效果预览** <br>
-  嘻嘻，先来一波gif图^_^  <br>
+  嘻嘻，先来一波gif图😜😜😜😜😜😜  <br>
   
-  ![整体预览](ttps://github.com/zsqio/wechat-pinkDiary/blob/master/images/yl.gif) <br>
+  ![整体预览](https://github.com/zsqio/wechat-pinkDiary/blob/master/images/yl.gif) <br>
   
-  ![写日记](ttps://github.com/zsqio/wechat-pinkDiary/blob/master/images/wd.gif) <br>
+  ![写日记](https://github.com/zsqio/wechat-pinkDiary/blob/master/images/wd.gif) <br>
   
   ![话题详情](https://github.com/zsqio/wechat-pinkDiary/blob/master/images/pl.gif)<br>
 
@@ -258,6 +258,71 @@ HTML结构
  .....
 ```
 * 带emoji输入框 <br>
+![emoji](https://github.com/zsqio/wechat-pinkDiary/blob/master/images/emojiShow.gif) <br>
+这里首先我们需要在data里定义一个emojiChar，注意这个emojiChar是有一大串可爱表情连起来的字符串，具体可以看下面的js代码，首先我们通过split()将字符串emojiChar切割成一个表情数组emChar[],但是这些表情不是显示在表情框中的表情形式，我们需要将他们转化成上图所示的qq和微信的原始表情展示。每一个表情都有相应的字符编码，但是其实我们这里并不是使用正则来转换成实体字符，这里我们是通过image将所有的表情以图片的形式显示出来，这里的图片访问地址从别人的项目里借鉴过来的，具体见代码。完成了emoji显示，接下来的就是实现当点击emoji时，将它显示到input文本域中。但是其实这里呈现出来的是我们之前在emojiChar里定义的表情样式，通过dataSet传递所选中的表情，详情见js代码的emojichoose()方法。完成以上这些，一个可爱的小型emoji输入框就是实现啦~
+HTML结构：<br>
+```
+<!-- emoji表情盒子 -->
+  <view class="emoji-box {{isShow ? 'emoji-move-in' : 'emoji-move-out'}} {{isLoad ? 'no-emoji-move' : ''}}" >
+    <scroll-view scroll-y="true" bindscroll="emojiScroll" style="height:200px">
+      <block wx:for="{{emojis}}" wx:for-item="e" wx:key="">
+        <view class="emoji-cell">
+          <image class="touch-active" bindtap="emojiChoose" 
+          src="http://soupu.oss-cn-shanghai.aliyuncs.com/emoji/{{e.emoji}}.png" 
+          data-emoji="{{e.char}}"
+          data-oxf="{{e.emoji}}">
+          </image>
+        </view>
+      </block>
+    </scroll-view>
+  </view>
+  ```
+  js控制 <br>
+  ```
+  Page({
+  data: {
+   .......
+    emojiChar: "☺-😋-😌-😍-😏-😜-😝-😞-😔-😪-😭-😁-😂-😃-😅-😆-👿-😒-😓-😔-😏-😖-😘-😚-😒-😡-😢-😣-😤-😢-😨-😳-😵-😷-😸-😻-😼-😽-😾-😿-🙊-🙋-🙏-✈-🚇-🚃-🚌-🍄-🍅-🍆-🍇-🍈-🍉-🍑-🍒-🍓-🐔-🐶-🐷-👦-👧-👱-👩-👰-👨-👲-👳-💃-💄-💅-💆-💇-🌹-💑-💓-💘-🚲",
+    //0x1f---
+    emoji: [
+      "60a", "60b", "60c", "60d", "60f",
+      "61b", "61d", "61e", "61f",
+      "62a", "62c", "62e",
+      "602", "603", "605", "606", "608",
+      "612", "613", "614", "615", "616", "618", "619", "620", "621", "623", "624", "625", "627", "629", "633", "635", "637",
+      "63a", "63b", "63c", "63d", "63e", "63f",
+      "64a", "64b", "64f", "681",
+      "68a", "68b", "68c",
+      "344", "345", "346", "347", "348", "349", "351", "352", "353",
+      "414", "415", "416",
+      "466", "467", "468", "469", "470", "471", "472", "473",
+      "483", "484", "485", "486", "487", "490", "491", "493", "498", "6b4"
+    ],
+    emojis: []    //通过qq、微信原始表情
+  },
+  onLoad: function () {
+    var em = {}, that = this, emChar = that.data.emojiChar.split("-");
+        var emojis = []
+        that.data.emoji.forEach(function (v, i) {
+          em = {
+            char: emChar[i],
+            emoji: "0x1f" + v
+          };
+          emojis.push(em)
+        });
+           that.setData({
+            emojis: emojis
+          })
+    }，
+    emojiChoose: function(e) {
+  // console.log(e.currentTarget.dataset.emoji)
+  this.setData({
+      comment: this.data.comment + e.currentTarget.dataset.emoji
+    })
+}
+})
+```
+其他实现功能在这里就不细讲，想了解，可自行参考[源码😜](https://github.com/zsqio/wechat-pinkDiary)
 
 
    
