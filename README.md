@@ -1,5 +1,5 @@
 # wechat-pinkDiary
-微信小程序-以粉粉日记APP为参考做的一个专属日记本。
+微信小程序-以粉粉日记APP为参考做的一个日记本。
 
 首先，微信小程序是什么？ <br>
 官方解释，微信小程序，简称小程序，是一种不需要下载安装即可使用的应用，它实现了应用“触手可及”的梦想，用户扫一扫或搜一下即可打开应用。简而言之，就是用户需要的时候打开，用完即走的一种应用。如果小程序能够兴起，我想到时候我们的手机将会变得很简单干净，因为你无需下载安装各种App！
@@ -19,11 +19,23 @@
 **效果预览** <br>
   嘻嘻，先来一波gif图^_^  <br>
   
-  ![整体预览](https://github.com/zsqio/wechat-pinkDiary/blob/master/images/yulan.gif) <br>
+  ![整体预览](ttps://github.com/zsqio/wechat-pinkDiary/blob/master/images/yl.gif) <br>
   
-  ![写日记](https://github.com/zsqio/wechat-pinkDiary/blob/master/images/write.gif) <br>
+  ![写日记](ttps://github.com/zsqio/wechat-pinkDiary/blob/master/images/wd.gif) <br>
   
-  ![话题详情](https://github.com/zsqio/wechat-pinkDiary/blob/master/images/comment.gif)<br>
+  ![话题详情](https://github.com/zsqio/wechat-pinkDiary/blob/master/images/pl.gif)<br>
+
+**页面注册**
+```
+ "pages":[
+    "pages/index/index",    //首页，也就是tabBar里“社区“对应的页面
+    "pages/my/index",       // tabBar“我的”页面
+    "pages/detail/index",    //首页推荐内容的详情页 
+    "pages/new/index",        // 编辑日记页面
+    "pages/diary/index",      //日记列表页面
+    "pages/logs/logs"
+  ]
+```
   
 **功能实现** <br>
   * 轮播图
@@ -34,7 +46,6 @@
   * 字体大小，颜色改变 
   * 地理定位
   * 下拉刷新
-  * 页面跳转
   * tabbar切换良好交互
   * 获取用户信息
   * 动态选择日记日期
@@ -117,7 +128,7 @@ HTML结构
     })
     .....
     ```
-    < 话题评论  <br>
+    * 话题评论  <br>
     页面展示的话题详情和已经展示的评论是从mock里获取的数据，评论功能的实现主要是借助数组的concat()方法，将你添加的评论和原有的评论连接起来，
     首先在data里面我们有个空的commentList来存放新发布的评论，获取评论内容等在这就不细讲，重点看一下发布评论的代码：<br>
     ```
@@ -233,7 +244,7 @@ HTML结构
   主要代码：
   ```
    wx.chooseImage({
-    count: 1, // 默认9
+    count: 1, // 默认9  表示可选择图片的数量
     sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
     sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
     success: function (res) {
@@ -246,5 +257,7 @@ HTML结构
  })
  .....
 ```
+* 带emoji输入框 <br>
+
 
    
