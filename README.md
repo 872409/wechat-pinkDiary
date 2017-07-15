@@ -19,11 +19,11 @@
 **效果预览** <br>
   嘻嘻，先来一波gif图^_^  <br>
   
-  ![整体预览](https://github.com/zsqio/wechat-pinkDiary/blob/master/images/yulan.gif) <br>
+  ![整体预览](ttps://github.com/zsqio/wechat-pinkDiary/blob/master/images/yl.gif) <br>
   
-  ![写日记](https://github.com/zsqio/wechat-pinkDiary/blob/master/images/write.gif) <br>
+  ![写日记](ttps://github.com/zsqio/wechat-pinkDiary/blob/master/images/wd.gif) <br>
   
-  ![话题详情](https://github.com/zsqio/wechat-pinkDiary/blob/master/images/comment.gif)<br>
+  ![话题详情](https://github.com/zsqio/wechat-pinkDiary/blob/master/images/pl.gif)<br>
 
 **页面注册**
 ```
