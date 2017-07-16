@@ -252,8 +252,7 @@ submitComment: function() {
         photos: tempFilePaths
         })
      }
- })
- .....
+   })
   ```
 
 * 带emoji输入框 <br>
@@ -275,9 +274,9 @@ HTML结构：<br>
       </block>
     </scroll-view>
   </view>
-  ```
-  js控制 
-  ```
+```
+js控制 
+```
   Page({
   data: {
    .......
@@ -318,8 +317,8 @@ HTML结构：<br>
   this.setData({
       comment: this.data.comment + e.currentTarget.dataset.emoji
     })
-}
-})
+   }
+  })
 ```
 其他实现功能在这里就不细讲，想了解，可自行参考[源码😜](https://github.com/zsqio/wechat-pinkDiary) <br>
 
