@@ -1,9 +1,7 @@
 # wechat-pinkDiary
 微信小程序-以粉粉日记APP为参考做的一个日记本。
 
-首先，微信小程序是什么？ <br>
-官方解释，微信小程序，简称小程序，是一种不需要下载安装即可使用的应用，它实现了应用“触手可及”的梦想，用户扫一扫或搜一下即可打开应用。简而言之，就是用户需要的时候打开，用完即走的一种应用。如果小程序能够兴起，我想到时候我们的手机将会变得很简单干净，因为你无需下载安装各种App！
-开发微信小程序你需要准备好这些工具：
+首先开发微信小程序你需要准备好这些工具：
 下载微信开发者工具，附上地址：https://mp.weixin.qq.com/debug/wxadoc/dev/devtools/download.html 下载好后就可以进行开发了，不过呢，如果要发布你的小程序呢，你要去申请AppId走各种流程，不过平时练练手可以选择无Appid进行开发，不过会有一些局限。具体开发详情你可以去https://mp.weixin.qq.com 这里了解。
 在创建了一个微信小程序后，会自动生成一些基本文件： <br>
 
@@ -13,7 +11,8 @@
   *  app.json 配置一些全局数据，所有页面都要在此处注册
   *  app.wxml 内容显示
   *  app.wxss 全局样式
-  下面切入我们的正题： <br>
+  
+其次,需要说明一下，我用到大量数据都是用mock来模拟数据，详情可见[Easy Mock](http://www.easy-mock.com) Easy Mock是一个可视化工具，能快速生成模拟数据的服务，它能为我们提供一个数据接口url，然后使用wx.request({ url: url, .....})来发送数据请求，不得不说mock是前端人员的有力工具。<br>下面切入我们的正题： <br>
   
   
 **效果预览** <br>
@@ -51,8 +50,6 @@
   * 动态选择日记日期
   
 **具体实现** <br>
-
-首先,在社区这一块，我用到大量数据都是用mock来模拟数据，详情可见[Easy Mock](http://www.easy-mock.com) Easy Mock是一个可视化工具，能快速生成模拟数据的服务，它能为我们提供一个数据接口url，然后使用wx.request({ url: url, .....})来发送数据请求，不得不说mock是前端人员的有力工具。<br>
 * 轮播图  <br>
 轮播图是微信小程序自带的轮播图(swiper)组件 <br>
 HTML结构
@@ -87,8 +84,8 @@ HTML结构
     }
   })
   ```
-  * tabbar切换良好交互 <br>
-  这个功能实现起来比较简单，主要是将app.json文件中的tabBar里设置样式、页面路径、图片路径，用列表list来渲染,详细请参考以下代码
+* tabbar切换良好交互 <br>
+这个功能实现起来比较简单，主要是将app.json文件中的tabBar里设置样式、页面路径、图片路径，用列表list来渲染,详细请参考以下代码
   ```
      "tabBar": {
       "color":"#999",
@@ -108,8 +105,8 @@ HTML结构
       }]
    }
    ```
-   * 写日记 <br>
-   因为编辑日记和展示日记在两个不同的页面，所以两个页面之间需要传递日记的内容，这里我主要是借助wx.setLocalStorage(key:key,value:value)将需要传递的数据存放到本地缓存中，虽然我们不建议将关键信息全部存在localStorage，以防用户换设备的情况。 但是在我们没有更好的数据共享的方式前可以一试。最后我们在日记列表页面通过wx.getStorage(key)得到我们之前存储的东西，然后再页面上显示出来。在日记列表页面可以对你的日记进行删除和修改操作，删除就很简单了，直接利用wx.clearStorage()将你存储在localSroage里的数据全部清空就可以了。这里可以借助setTimeout来实现一个假的效果，修改的话，就是通过wx.navigateTo()里的url将日记的text作为参数传递给编辑页面，详情见代码：<br>
+* 写日记 <br>
+因为编辑日记和展示日记在两个不同的页面，所以两个页面之间需要传递日记的内容，这里我主要是借助wx.setLocalStorage(key:key,value:value)将需要传递的数据存放到本地缓存中，虽然我们不建议将关键信息全部存在localStorage，以防用户换设备的情况。 但是在我们没有更好的数据共享的方式前可以一试。最后我们在日记列表页面通过wx.getStorage(key)得到我们之前存储的东西，然后再页面上显示出来。在日记列表页面可以对你的日记进行删除和修改操作，删除就很简单了，直接利用wx.clearStorage()将你存储在localSroage里的数据全部清空就可以了。这里可以借助setTimeout来实现一个假的效果，修改的话，就是通过wx.navigateTo()里的url将日记的text作为参数传递给编辑页面，详情见代码：<br>
   日记列表页面代码： <br> 
    ```
     //modify就是点击修改按钮触发的事件
@@ -128,11 +125,11 @@ HTML结构
     })
     .....
     ```
-    * 话题评论  <br>
-    页面展示的话题详情和已经展示的评论是从mock里获取的数据，评论功能的实现主要是借助数组的concat()方法，将你添加的评论和原有的评论连接起来，
-    首先在data里面我们有个空的commentList来存放新发布的评论，获取评论内容等在这就不细讲，重点看一下发布评论的代码：<br>
-    ```
-     submitComment: function() {
+* 话题评论  <br>
+页面展示的话题详情和已经展示的评论是从mock里获取的数据，评论功能的实现主要是借助数组的concat()方法，将你添加的评论和原有的评论连接起来，
+首先在data里面我们有个空的commentList来存放新发布的评论，获取评论内容等在这就不细讲，重点看一下发布评论的代码：<br>
+```
+submitComment: function() {
        var that = this, conArr = [];
         //此处延迟的原因是 在点发送时 先执行失去文本焦点 再执行的send 事件 此时获取数据不正确 故手动延迟100毫秒
         setTimeout(function () {
@@ -160,6 +157,7 @@ HTML结构
         }, 100)
      }
 ```
+
 * 地理定位 <br>
  我在定位功能的实现中使用了腾讯地图的定位API,具体使用可参考网址详细解析http://lbs.qq.com/qqmap_wx_jssdk/index.html <br/>
  但是有3步是必不可少的：
@@ -204,8 +202,8 @@ HTML结构
     })
   }
   ```
-  * 下拉刷新评论 <br>
-  这里主要是借助了微信小程序的视图容器scroll-view，可滚动区域，设置属性scroll-y="true",表示可沿着y轴滚动，需要注意使用竖向滚动时，需要给<scroll-view/>一个固定高度，我这里是通过wx.getSystemInfo()得到windowHeight,然后将固定高度设置为和windowHeight一样。当滚动到评论底部时，会触发会触发 scrolltolower 事件，在事件对应的处理方法里我们将预先设置好的评论信息加载到页面上。这样就形成一个下拉加载的效果。参考代码:<br>
+* 下拉刷新评论 <br>
+这里主要是借助了微信小程序的视图容器scroll-view，可滚动区域，设置属性scroll-y="true",表示可沿着y轴滚动，需要注意使用竖向滚动时，需要给<scroll-view/>一个固定高度，我这里是通过wx.getSystemInfo()得到windowHeight,然后将固定高度设置为和windowHeight一样。当滚动到评论底部时，会触发会触发 scrolltolower 事件，在事件对应的处理方法里我们将预先设置好的评论信息加载到页面上。这样就形成一个下拉加载的效果。参考代码:<br>
   ```
   //哈哈，方法命名有点粗糙~
   refresh:function(){
@@ -238,10 +236,10 @@ HTML结构
     ++that.data.refreshTime;
   }
   ```
-  * 上传图片 <br>
-  通过wx.chooseImage(OBJECT)来从本地相册选择图片或使用相机拍照，具体参数如图：<br>
-  ![](https://github.com/zsqio/wechat-pinkDiary/blob/master/images/param.PNG) <br>
-  主要代码：
+* 上传图片 <br>
+通过wx.chooseImage(OBJECT)来从本地相册选择图片或使用相机拍照，具体参数如图：<br>
+![](https://github.com/zsqio/wechat-pinkDiary/blob/master/images/param.PNG) <br>
+主要代码：
   ```
    wx.chooseImage({
     count: 1, // 默认9  表示可选择图片的数量
@@ -322,7 +320,11 @@ HTML结构：<br>
 }
 })
 ```
-其他实现功能在这里就不细讲，想了解，可自行参考[源码😜](https://github.com/zsqio/wechat-pinkDiary)
-
+其他实现功能在这里就不细讲，想了解，可自行参考[源码😜](https://github.com/zsqio/wechat-pinkDiary) <br>
+## 小结 <br> 
+* 界面交互，区分wx.navigateTo和wx.switchTab，前者是保留当前页面，跳转到应用内的某个页面（不在tabbar），后者是跳转到 tabBar 页面，并关闭其他所有非 tabBar 页面。当我们要从不在tabbar里的页面中跳转到tabbar页面时，除了选择左上角的返回键后，应该选择wx.switchTab,而不是wx.navigateTo <br>
+* 每个页面都必须先注册，不然页面跳转是会出错，我们应该养成良好的习惯，先规划好需要的页面，然后再去一个个实现。 <br>
+* 如果需要用到本地缓存localStorage里的数据，并且及时响应变化，此时，最好使用wx.StorageSync()来获取。wx.getStorage()和wx.getStorageSync()的区别就在于，前者是异步执行，后者是同步执行。
+* 
 
    
