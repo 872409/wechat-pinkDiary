@@ -321,10 +321,12 @@ HTML结构：<br>
 })
 ```
 其他实现功能在这里就不细讲，想了解，可自行参考[源码😜](https://github.com/zsqio/wechat-pinkDiary) <br>
-## 小结 <br> 
+
+## 小结 <br>
+
 * 界面交互，区分wx.navigateTo和wx.switchTab，前者是保留当前页面，跳转到应用内的某个页面（不在tabbar），后者是跳转到 tabBar 页面，并关闭其他所有非 tabBar 页面。当我们要从不在tabbar里的页面中跳转到tabbar页面时，除了选择左上角的返回键后，应该选择wx.switchTab,而不是wx.navigateTo <br>
 * 每个页面都必须先注册，不然页面跳转是会出错，我们应该养成良好的习惯，先规划好需要的页面，然后再去一个个实现。 <br>
 * 如果需要用到本地缓存localStorage里的数据，并且及时响应变化，此时，最好使用wx.StorageSync()来获取。wx.getStorage()和wx.getStorageSync()的区别就在于，前者是异步执行，后者是同步执行。
-* 
+
 
    
