@@ -241,7 +241,7 @@ submitComment: function() {
 ![](https://github.com/zsqio/wechat-pinkDiary/blob/master/images/param.PNG) <br>
 主要代码：
   ```
-   wx.chooseImage({
+  wx.chooseImage({
     count: 1, // 默认9  表示可选择图片的数量
     sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
     sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
@@ -254,10 +254,11 @@ submitComment: function() {
      }
  })
  .....
-```
+  ```
+
 * 带emoji输入框 <br>
 ![emoji](https://github.com/zsqio/wechat-pinkDiary/blob/master/images/emojiShow.gif) <br>
-这里首先我们需要在data里定义一个emojiChar，注意这个emojiChar是有一大串可爱表情连起来的字符串，具体可以看下面的js代码，首先我们通过split()将字符串emojiChar切割成一个表情数组emChar[],但是这些表情不是显示在表情框中的表情形式，我们需要将他们转化成上图所示的qq和微信的原始表情展示。每一个表情都有相应的字符编码，但是其实我们这里并不是使用正则来转换成实体字符，这里我们是通过image将所有的表情以图片的形式显示出来，这里的图片访问地址从别人的项目里借鉴过来的，具体见代码。完成了emoji显示，接下来的就是实现当点击emoji时，将它显示到input文本域中。但是其实这里呈现出来的是我们之前在emojiChar里定义的表情样式，通过dataSet传递所选中的表情，详情见js代码的emojichoose()方法。完成以上这些，一个可爱的小型emoji输入框就是实现啦~
+这里首先我们需要在data里定义一个emojiChar，注意这个emojiChar是有一大串可爱表情连起来的字符串，具体可以看下面的js代码，首先我们通过split()将字符串emojiChar切割成一个表情数组emChar[],但是这些表情不是显示在表情框中的表情形式，我们需要将他们转化成上图所示的qq和微信的原始表情展示。每一个表情都有相应的字符编码，但是其实我们这里并不是使用正则来转换成实体字符，这里我们是通过image将所有的表情以图片的形式显示出来，这里的图片访问地址从别人的项目里借鉴过来的，具体见代码。完成了emoji显示，接下来的就是实现当点击emoji时，将它显示到input文本域中。但是其实这里呈现出来的是我们之前在emojiChar里定义的表情样式，通过dataSet传递所选中的表情，详情见js代码的emojichoose()方法。完成以上这些，一个可爱的小型emoji输入框就是实现啦~ <br>
 HTML结构：<br>
 ```
 <!-- emoji表情盒子 -->
@@ -275,7 +276,7 @@ HTML结构：<br>
     </scroll-view>
   </view>
   ```
-  js控制 <br>
+  js控制 
   ```
   Page({
   data: {
